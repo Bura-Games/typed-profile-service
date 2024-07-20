@@ -1580,7 +1580,7 @@ function Profile:ListenToRelease(listener) --> [ScriptConnection] (place_id / ni
 	end
 end
 
-function Profile:Save()
+function Profile:SaveAsync()
 	if self._view_mode == true then
 		error("[ProfileService]: Can't save Profile in view mode - Should you be calling :OverwriteAsync() instead?")
 	end
@@ -1603,7 +1603,7 @@ function Profile:Save()
 	end
 end
 
-function Profile:SaveAsync()
+function Profile:PromiseSave()
 	if self._view_mode then
 		error("[ProfileService]: Can't save Profile in view mode")
 	end
@@ -1695,7 +1695,7 @@ function Profile:ClearGlobalUpdates() -- Clears all global updates data from a p
 	}, GlobalUpdates)
 end
 
-function Profile:Overwrite() -- Saves the profile to the DataStore and removes the session lock
+function Profile:OverwriteAsync() -- Saves the profile to the DataStore and removes the session lock
 	if self._view_mode ~= true then
 		error("[ProfileService]: :OverwriteAsync() can only be used in view mode")
 	end
@@ -1703,7 +1703,7 @@ function Profile:Overwrite() -- Saves the profile to the DataStore and removes t
 	SaveProfileAsync(self, nil, true)
 end
 
-Profile.OverwriteAsync = Promise.promisify(Profile.Overwrite)
+Profile.PromiseOverwrite = Promise.promisify(Profile.OverwriteAsync)
 
 function Profile:Destroy()
 	self.Janitor:Destroy()
@@ -1740,7 +1740,7 @@ function ProfileVersionQuery:_MoveQueue()
 	end
 end
 
-function ProfileVersionQuery:Next(_is_stacking) --> [Profile] or nil
+function ProfileVersionQuery:NextAsync(_is_stacking) --> [Profile] or nil
 	if self._profile_store == nil then
 		return nil
 	end
@@ -1840,7 +1840,7 @@ function ProfileVersionQuery:Next(_is_stacking) --> [Profile] or nil
 	return profile
 end
 
-ProfileVersionQuery.NextAsync = Promise.promisify(ProfileVersionQuery.Next)
+ProfileVersionQuery.PromiseNext = Promise.promisify(ProfileVersionQuery.NextAsync)
 
 -- ProfileStore object:
 

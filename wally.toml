@@ -1,8 +1,21 @@
 [package]
 name = "bura-games/typed-profile-service"
+description = "A typed version of ProfileService!"
 version = "1.0.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+exclude = [
+	".vscode",
+	".gitignore",
+	"scripts",
+	".luaurc",
+	"place.project.json",
+	"roblox.yml",
+	"rokit.toml",
+	"selene.toml",
+	"stylua.toml",
+	"TypedProfileService.code-workspace",
+]
 
 [dependencies]
 Janitor = "howmanysmall/janitor@1.16.0"

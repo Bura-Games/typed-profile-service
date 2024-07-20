@@ -82,13 +82,13 @@ export type ViewProfile<DataType, RobloxMetadata = unknown> = {
 	RemoveUserId: (self: ViewProfile<DataType, RobloxMetadata>, userId: number) -> (),
 	Identify: (self: ViewProfile<DataType, RobloxMetadata>) -> string,
 
-	Save: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
-	SaveAsync: (self: ViewProfile<DataType, RobloxMetadata>) -> Promise.Promise,
+	SaveAsync: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
+	PromiseSave: (self: ViewProfile<DataType, RobloxMetadata>) -> Promise.Promise,
 
 	ClearGlobalUpdates: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
 
-	Overwrite: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
-	OverwriteAsync: (self: ViewProfile<DataType, RobloxMetadata>) -> Promise.Promise,
+	OverwriteAsync: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
+	PromiseOverwrite: (self: ViewProfile<DataType, RobloxMetadata>) -> Promise.Promise,
 
 	StoreOnValueChange: (
 		self: ViewProfile<DataType, RobloxMetadata>,
@@ -105,41 +105,43 @@ export type ViewProfile<DataType, RobloxMetadata = unknown> = {
 }
 
 export type ProfileVersionQuery<DataType, RobloxMetadata = unknown> = {
-	Next: (self: ProfileVersionQuery<DataType, RobloxMetadata>) -> ViewProfile<DataType, RobloxMetadata>?,
-	NextAsync: (self: ProfileVersionQuery<DataType, RobloxMetadata>) -> Promise<ViewProfile<DataType, RobloxMetadata>?>,
+	NextAsync: (self: ProfileVersionQuery<DataType, RobloxMetadata>) -> ViewProfile<DataType, RobloxMetadata>?,
+	PromiseNext: (
+		self: ProfileVersionQuery<DataType, RobloxMetadata>
+	) -> Promise<ViewProfile<DataType, RobloxMetadata>?>,
 }
 
 export type ProfileStore<DataType, RobloxMetadata = unknown> = {
 	Mock: ProfileStore<DataType, RobloxMetadata>,
 
-	LoadProfile: (
+	LoadProfileAsync: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		notReleasedHandler: DataStoreHandler?
 	) -> Profile<DataType, RobloxMetadata>?,
-	LoadProfileAsync: (
+	PromiseLoadProfile: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		notReleasedHandler: DataStoreHandler?
 	) -> Promise<Profile<DataType, RobloxMetadata>?>,
 
-	GlobalUpdateProfile: (
+	GlobalUpdateProfileAsync: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		updateHandler: GlobalUpdateHandler
 	) -> GlobalUpdates?,
-	GlobalUpdateProfileAsync: (
+	PromiseGlobalUpdateProfile: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		updateHandler: GlobalUpdateHandler
 	) -> Promise<GlobalUpdates?>,
 
-	ViewProfile: (
+	ViewProfileAsync: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		version: string?
 	) -> Profile<DataType, RobloxMetadata>?,
-	ViewProfileAsync: (
+	PromiseViewProfile: (
 		self: ProfileStore<DataType, RobloxMetadata>,
 		profileKey: string,
 		version: string?
@@ -153,8 +155,8 @@ export type ProfileStore<DataType, RobloxMetadata = unknown> = {
 		maxDate: DateTime | nil | number
 	) -> ProfileVersionQuery<DataType, RobloxMetadata>,
 
-	WipeProfile: (self: ProfileStore<DataType, RobloxMetadata>, profileKey: string) -> boolean,
-	WipeProfileAsync: (self: ProfileStore<DataType, RobloxMetadata>, profileKey: string) -> Promise<boolean>,
+	WipeProfileAsync: (self: ProfileStore<DataType, RobloxMetadata>, profileKey: string) -> boolean,
+	PromiseWipeProfile: (self: ProfileStore<DataType, RobloxMetadata>, profileKey: string) -> Promise<boolean>,
 }
 
 export type ProfileService = {
