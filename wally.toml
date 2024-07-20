@@ -1,5 +1,5 @@
 [package]
-name = "bura-games/typed-profile-service"
+name = "howmanysmall/typed-profile-service"
 description = "A typed version of ProfileService!"
 version = "1.0.0"
 registry = "https://github.com/UpliftGames/wally-index"
