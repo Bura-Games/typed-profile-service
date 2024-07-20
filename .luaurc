@@ -1,0 +1,12 @@
+{
+	"aliases": {},
+	"languageMode": "strict",
+	"lint": {
+		"*": true
+	},
+	"globals": [
+		"describe",
+		"expect",
+		"it"
+	]
+}

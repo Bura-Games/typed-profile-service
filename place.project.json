@@ -1,0 +1,12 @@
+{
+	"name": "typed-profile-service",
+	"tree": {
+		"$className": "DataModel",
+		"ServerStorage": {
+			"$className": "ServerStorage",
+			"$ignoreUnknownInstances": true,
+			"ProfileService": {"$path": "./default.project.json"},
+			"Packages": {"$path": "Packages"}
+		}
+	}
+}

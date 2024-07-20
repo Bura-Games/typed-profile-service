@@ -1,0 +1,9 @@
+[package]
+name = "bura-games/typed-profile-service"
+version = "1.0.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+Janitor = "howmanysmall/janitor@1.16.0"
+Promise = "howmanysmall/typed-promise@4.0.3"
