@@ -5,8 +5,11 @@
 		"ServerStorage": {
 			"$className": "ServerStorage",
 			"$ignoreUnknownInstances": true,
-			"ProfileService": {"$path": "./default.project.json"},
-			"Packages": {"$path": "Packages"}
+			"Packages": {
+				"$ignoreUnknownInstances": true,
+				"$path": "Packages",
+				"ProfileService": {"$path": "./default.project.json"}
+			}
 		}
 	}
 }

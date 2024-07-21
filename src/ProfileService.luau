@@ -206,8 +206,8 @@
 local DataStoreService = game:GetService("DataStoreService")
 local RunService = game:GetService("RunService")
 
-local Janitor = require(script.Parent.Parent.Packages.Janitor)
-local Promise = require(script.Parent.Parent.Packages.Promise)
+local Janitor = require(script.Parent.Parent.Janitor)
+local Promise = require(script.Parent.Parent.Promise)
 
 local GetUnixTimestamp = require(script.Parent.GetUnixTimestamp)
 local Types = require(script.Parent.Types)

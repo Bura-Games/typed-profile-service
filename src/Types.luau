@@ -1,7 +1,7 @@
 --!optimize 2
 --!strict
 
-local Promise = require(script.Parent.Parent.Packages.Promise)
+local Promise = require(script.Parent.Parent.Promise)
 
 type Promise<T...> = Promise.TypedPromise<T...>
 type Signal<Function, Arguments...> = {
