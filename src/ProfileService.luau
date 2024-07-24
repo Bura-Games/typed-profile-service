@@ -1603,22 +1603,7 @@ function Profile:Save()
 	end
 end
 
-function Profile:PromiseSave()
-	if self._view_mode then
-		error("[ProfileService]: Can't save Profile in view mode")
-	end
-
-	if not self:IsActive() then
-		error("[ProfileService]: PROFILE EXPIRED - Can't save Profile")
-	end
-
-	RemoveProfileFromAutoSave(self)
-	AddProfileToAutoSave(self)
-
-	return Promise.promisify(function()
-		SaveProfileAsync(self)
-	end)()
-end
+Profile.PromiseSave = Promise.promisify(Profile.Save)
 
 function Profile:Release()
 	if self._view_mode == true then
