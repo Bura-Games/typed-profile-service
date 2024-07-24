@@ -1580,7 +1580,7 @@ function Profile:ListenToRelease(listener) --> [ScriptConnection] (place_id / ni
 	end
 end
 
-function Profile:SaveAsync()
+function Profile:Save()
 	if self._view_mode == true then
 		error("[ProfileService]: Can't save Profile in view mode - Should you be calling :OverwriteAsync() instead?")
 	end

@@ -82,7 +82,7 @@ export type ViewProfile<DataType, RobloxMetadata = unknown> = {
 	RemoveUserId: (self: ViewProfile<DataType, RobloxMetadata>, userId: number) -> (),
 	Identify: (self: ViewProfile<DataType, RobloxMetadata>) -> string,
 
-	SaveAsync: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
+	Save: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
 	PromiseSave: (self: ViewProfile<DataType, RobloxMetadata>) -> Promise.Promise,
 
 	ClearGlobalUpdates: (self: ViewProfile<DataType, RobloxMetadata>) -> (),
