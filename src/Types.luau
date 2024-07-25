@@ -76,7 +76,7 @@ export type ViewProfile<DataType, RobloxMetadata = unknown> = {
 		self: ViewProfile<DataType, RobloxMetadata>,
 		listener: (placeId: number?, jobId: string?) -> ()
 	) -> RBXScriptConnection,
-	ListenToHopReady: (self: ViewProfile<DataType, RobloxMetadata>) -> RBXScriptConnection,
+	ListenToHopReady: (self: ViewProfile<DataType, RobloxMetadata>, callback: () -> ()) -> RBXScriptConnection,
 
 	AddUserId: (self: ViewProfile<DataType, RobloxMetadata>, userId: number) -> (),
 	RemoveUserId: (self: ViewProfile<DataType, RobloxMetadata>, userId: number) -> (),
