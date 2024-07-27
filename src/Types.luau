@@ -11,7 +11,10 @@ type Signal<Function, Arguments...> = {
 }
 
 -- ProfileService
-export type DataStoreHandler = "ForceLoad" | "Steal" | "Repeat" | "Cancel"
+export type BaseDataStoreHandlers = "ForceLoad" | "Steal"
+export type DataStoreHandlers = BaseDataStoreHandlers | "Repeat" | "Cancel"
+export type NotReleasedHandler = (placeId: number?, gameJobId: string?) -> DataStoreHandlers
+export type DataStoreHandler = BaseDataStoreHandlers | NotReleasedHandler
 
 export type GlobalUpdateHandler = (globalUpdates: GlobalUpdates) -> ()
 export type GlobalUpdateData = {

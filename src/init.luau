@@ -3,9 +3,11 @@
 
 local Types = require(script.Types)
 
+export type BaseDataStoreHandlers = Types.BaseDataStoreHandlers
+export type DataStoreHandlers = Types.DataStoreHandlers
+export type NotReleasedHandler = Types.NotReleasedHandler
 export type DataStoreHandler = Types.DataStoreHandler
 
-export type NotReleasedHandler = (placeId: number, gameJobId: string) -> DataStoreHandler
 export type GlobalUpdateHandler = Types.GlobalUpdateHandler
 export type GlobalUpdateData = Types.GlobalUpdateData
 
