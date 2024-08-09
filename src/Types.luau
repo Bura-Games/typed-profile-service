@@ -163,7 +163,10 @@ export type ProfileStore<DataType, RobloxMetadata = unknown> = {
 }
 
 export type ProfileService = {
+	CriticalState: boolean,
+	ServiceIssueCount: number,
 	ServiceLocked: boolean,
+
 	CorruptionSignal: Signal<(profileStoreName: string, profileKey: string) -> (), string, string>,
 	CriticalStateSignal: Signal<(isCriticalState: boolean) -> (), boolean>,
 	IssueSignal: Signal<

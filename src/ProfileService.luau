@@ -209,7 +209,6 @@ local RunService = game:GetService("RunService")
 local Janitor = require(script.Parent.Parent.Janitor)
 local Promise = require(script.Parent.Parent.Promise)
 
-local GetUnixTimestamp = require(script.Parent.GetUnixTimestamp)
 local Types = require(script.Parent.Types)
 
 local SETTINGS = {
@@ -536,6 +535,10 @@ local function ReconcileTable(target, template)
 	end
 end
 
+local function GetUnixTimestamp()
+	return os.time()
+end
+
 ----- Private functions -----
 
 local function IdentifyProfile(store_name, store_scope, key)
@@ -582,7 +585,7 @@ local function CustomWriteQueueAsync(callback, store, key) --> ... -- Passed ret
 	end
 
 	if CustomWriteQueue[store][key] == nil then
-		CustomWriteQueue[store][key] = {LastWrite = 0, Queue = {}, CleanupJob = nil}
+		CustomWriteQueue[store][key] = {CleanupJob = nil, LastWrite = 0, Queue = {}}
 	end
 
 	local queue_data = CustomWriteQueue[store][key]
@@ -685,7 +688,7 @@ local function MockUpdateAsync(mock_data_store, profile_store_name, key, transfo
 	end
 
 	--local epoch_time = DateTime.now().UnixTimestamp * 1000 --math.floor(DateTime.now().UnixTimestamp * 1000)
-	local epoch_time = math.floor(GetUnixTimestamp() * 1000)
+	local epoch_time = math.floor(GetUnixTimestamp() * 1_000)
 	local mock_entry = profile_store[key]
 	local mock_entry_was_nil = false
 
@@ -745,7 +748,7 @@ local function StandardProfileUpdateAsyncDataStore(
 ) --> loaded_data, key_info
 	local loaded_data, key_info
 	local success, error_message = pcall(function()
-		local transform_function = function(latest_data)
+		local function transform_function(latest_data)
 			local missing_profile = false
 			local data_corrupted = false
 			local global_updates_data = {0, {}}
@@ -1011,7 +1014,7 @@ local function CheckForNewGlobalUpdates(profile, old_global_updates_data, new_gl
 	end
 end
 
-local function SaveProfileAsync(profile, release_from_session, is_overwriting)
+local function SaveProfileAsync(profile, release_from_session: boolean?, is_overwriting: boolean?)
 	if type(profile.Data) ~= "table" then
 		RegisterCorruption(
 			profile._profile_store._profile_store_name,
@@ -1424,7 +1427,7 @@ function GlobalUpdates:ChangeActiveUpdate(update_id, update_data)
 			error("[ProfileService]: Can't change locked global update")
 		end
 
-		get_global_update[2] = get_global_update[2] + 1 -- Increment version id
+		get_global_update[2] += 1 -- Increment version id
 		get_global_update[4] = update_data -- Set new global update data
 	else
 		error("[ProfileService]: Passed non-existant update_id")
