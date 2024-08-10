@@ -2429,47 +2429,27 @@ function ProfileService.GetProfileStore(profile_store_index, profile_template) -
 			LoadProfileAsync = function(_, profile_key, not_released_handler)
 				return profile_store:LoadProfileAsync(profile_key, not_released_handler, UseMockTag)
 			end;
-
 			GlobalUpdateProfileAsync = function(_, profile_key, update_handler)
 				return profile_store:GlobalUpdateProfileAsync(profile_key, update_handler, UseMockTag)
 			end;
-
 			ViewProfileAsync = function(_, profile_key, version)
 				return profile_store:ViewProfileAsync(profile_key, version, UseMockTag)
 			end;
-
-			FindProfileVersionAsync = function(_, profile_key, sort_direction, min_date, max_date)
-				return profile_store:FindProfileVersionAsync(
-					profile_key,
-					sort_direction,
-					min_date,
-					max_date,
-					UseMockTag
-				)
-			end;
-
 			WipeProfileAsync = function(_, profile_key)
 				return profile_store:WipeProfileAsync(profile_key, UseMockTag)
 			end;
 
-			LoadProfile = function(_, profile_key, not_released_handler)
-				return profile_store:LoadProfile(profile_key, not_released_handler, UseMockTag)
+			PromiseLoadProfile = function(_, profile_key, not_released_handler)
+				return profile_store:PromiseLoadProfile(profile_key, not_released_handler, UseMockTag)
 			end;
-
-			GlobalUpdateProfile = function(_, profile_key, update_handler)
-				return profile_store:GlobalUpdateProfile(profile_key, update_handler, UseMockTag)
+			PromiseGlobalUpdateProfile = function(_, profile_key, update_handler)
+				return profile_store:PromiseGlobalUpdateProfile(profile_key, update_handler, UseMockTag)
 			end;
-
-			ViewProfile = function(_, profile_key)
-				return profile_store:ViewProfile(profile_key, UseMockTag)
+			PromiseViewProfile = function(_, profile_key)
+				return profile_store:PromiseViewProfile(profile_key, UseMockTag)
 			end;
-
-			WipeProfile = function(_, profile_key)
-				return profile_store:WipeProfile(profile_key, UseMockTag)
-			end;
-
-			FindProfileVersion = function(_, profile_key, sort_direction, min_date, max_date)
-				return profile_store:FindProfileVersion(profile_key, sort_direction, min_date, max_date, UseMockTag)
+			PromiseWipeProfile = function(_, profile_key)
+				return profile_store:PromiseWipeProfile(profile_key, UseMockTag)
 			end;
 		};
 
